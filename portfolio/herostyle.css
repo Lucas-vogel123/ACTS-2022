@@ -1,6 +1,6 @@
 body
 {
-    background-color: rgb(244, 244, 241);
+    background-color: rgb(154, 181, 244);
 }
 .imgdiv
 {
@@ -11,7 +11,9 @@ body
     font-size: 100px;
     margin-bottom: 0px;
     color: black;
+    background-color: white;
     font-family: "Times New Roman", Times, serif;
+    position: sticky;
 }
 .caption
 {
@@ -19,6 +21,8 @@ body
     margin-bottom: 0px;
     font-size: 50px;
     color: black;
+    background-color: white;
+    position: sticky;
 }
 .mainimg
 {

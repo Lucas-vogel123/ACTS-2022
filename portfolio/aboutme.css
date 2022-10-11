@@ -1,0 +1,43 @@
+body
+{
+    background-color: pink;
+}
+.title
+{
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 50px;
+    margin-left: 85VH;
+    margin-right: 85VH;
+    margin-bottom: 5px;
+}
+.img1
+{
+    float: left;
+    width: 50VH;
+    height: 50VH;
+}
+.img2
+{
+    width: 50VH;
+    height: 50VH;
+    float: right
+}
+.sportdes
+{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}
+.athletic
+{
+    float: right;
+    width: 100VH;
+    height: 100VH;
+}
+.academic
+{
+    float: left;
+    width: 100VH;
+    height: 100VH;
+}
