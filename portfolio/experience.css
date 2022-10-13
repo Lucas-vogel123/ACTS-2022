@@ -21,6 +21,7 @@
 }
 body{
     background-color: rgb(45, 110, 166);
+    overflow: auto;
 }
 .title
 {
@@ -29,9 +30,8 @@ body{
     font-family: "Times New Roman", Times, serif;
     font-size: 50px;
     margin-left: 80VH;
-    margin-right: 78VH;
+    margin-right: 76VH;
     margin-bottom: 5px;
-    position: sticky;
 }
 .atr
 {
@@ -47,9 +47,18 @@ body{
     font-family: "Times New Roman", Times, serif;
     font-size: 40px;
 }
+.back
+{
+    height: 50px;
+    width: 50px;
+    position: sticky;
+    top: 0;
+
+}
 .atimg
 {
     float:right;
+    margin-bottom: 10px;
     width: 70VH;
     height: 50VH;
 }
@@ -57,4 +66,19 @@ body{
 {
     width: 70VH;
     height: 50VH;
+}
+.athcaption
+{
+    margin-top: 5px;
+    clear: right;
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+}
+.accaption
+{
+    clear: left;
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
 }

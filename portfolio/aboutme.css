@@ -2,15 +2,19 @@ body
 {
     background-color: pink;
 }
+.back{
+    height: 50px;
+    width: 50px;
+}
 .title
 {
     background-color: white;
     color: black;
     font-family: "Times New Roman", Times, serif;
     font-size: 50px;
-    margin-left: 85VH;
-    margin-right: 85VH;
-    margin-bottom: 5px;
+    margin-left: 80VH;
+    margin-right: 78VH;
+    margin-bottom: 0px;
 }
 .img1
 {
@@ -26,6 +30,7 @@ body
 }
 .sportdes
 {
+    margin-top: 3px;
     font-family: "Times New Roman", Times, serif;
     font-size: 20px;
 }
