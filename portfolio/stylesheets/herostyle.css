@@ -1,0 +1,21 @@
+body
+{
+    background-color: rgb(154, 181, 244);
+}
+.imgdiv
+{
+    margin-left: 100VH;
+}
+.title
+{
+    color: black;
+    background-color: white;
+    font-family: "Times New Roman", Times, serif;
+}
+.nav-style
+{
+    background-color: rgb(24, 92, 132);
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+}
+   

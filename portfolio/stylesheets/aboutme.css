@@ -1,0 +1,27 @@
+body
+{
+    background-color: rgb(154, 181, 244);
+}
+.title
+{
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+}
+.jumbo-sizing
+{
+    height: 30VH;
+    margin-bottom: 0px;
+}
+.nav-style
+{
+    color: black;
+    background-color: rgb(24, 92, 132);
+    font-family: "Times New Roman", Times, serif;
+}
+.sportdes
+{
+    margin-top: 5px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}
