@@ -1,0 +1,71 @@
+
+body{
+    background-color: rgb(154, 181, 244);
+    overflow: auto;
+}
+.title
+{
+    background-color:  white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+}
+.nav-style
+{
+    background-color: rgb(24, 92, 132);
+    font-family: "Times New Roman", Times, serif;
+}
+.card-style
+{
+    width: 100VH;
+    height: 125VH;
+    margin-bottom: 5px;
+}
+.atr
+{
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 40px;
+}
+.acr
+{
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 40px;
+}
+.back
+{
+    height: 50px;
+    width: 50px;
+    position: sticky;
+    top: 0;
+
+}
+.atimg
+{
+    float:right;
+    margin-bottom: 10px;
+    width: 70VH;
+    height: 50VH;
+}
+.acimg
+{
+    width: 70VH;
+    height: 50VH;
+}
+.athcaption
+{
+    margin-top: 5px;
+    clear: right;
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+}
+.accaption
+{
+    clear: left;
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+}
