@@ -25,6 +25,8 @@ class User(Base):
                              primaryjoin="User.username==Follower.following_id",
                              secondaryjoin="User.username==Follower.follower_id",
                              overlaps="following")
+    def __repr__(self):
+        print("@" + self.username)
 
 
 class Follower(Base):
@@ -37,12 +39,46 @@ class Follower(Base):
 
 class Tweet(Base):
     # TODO: Complete the class
-    pass
+    __tablename__ = "Tweets"
 
+    id = Column("id", INTEGER, primary_key = True)
+    content = Column("content", TEXT, nullable = False)
+    timestamp = Column("timestamp", TEXT, nullable = False)
+    username = Column("username", TEXT, nullable = False)
+    
+
+    def __init__(self, content, timestamp, username):
+        self.content = content
+        self.timestamp = timestamp
+        self.username = username
+
+    def __repr__(self):
+        print("@" + self.username + "/n " + self.content + "/n" + self.tag)
+        
 class Tag(Base):
     # TODO: Complete the class
-    pass
+    __tablename__ = "Tags"
+
+    id = Column("id", INTEGER, primary_key = True)
+    content = Column("content", TEXT, nullable = False)
+
+    def __init__(self, content):
+        self.content = content
+
+    def __repr__(self):
+        print("#" + self.content)
+    
 
 class TweetTag(Base):
     # TODO: Complete the class
-    pass
+    __tablename__ = "TweetTags"
+
+    id = Column("id", INTEGER, primary_key = True)
+    tweet_id = Column("tweet_id", INTEGER, ForeignKey('Tweet.id'))
+    tag_id = Column("tag_id", INTEGER, ForeignKey('Tag.id'))
+    tag = relationship("tag", back_populates = "TweetTags")
+    tweet = relationship("tweet", back_populates = "TweetTags")
+
+    def __init__(self, tweet_id, tag_id):
+        self.tweet_id = tweet_id
+        self.tag_id = tag_id
