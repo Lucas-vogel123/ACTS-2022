@@ -25,8 +25,12 @@ class User(Base):
                              primaryjoin="User.username==Follower.following_id",
                              secondaryjoin="User.username==Follower.follower_id",
                              overlaps="following")
+    def __init__(self, username, password):
+        self.username = username
+        self.passwor = password
+    
     def __repr__(self):
-        print("@" + self.username)
+        return "@" + self.username
 
 
 class Follower(Base):
@@ -45,6 +49,8 @@ class Tweet(Base):
     content = Column("content", TEXT, nullable = False)
     timestamp = Column("timestamp", TEXT, nullable = False)
     username = Column("username", TEXT, nullable = False)
+    tweet_tags = relationship("tweet_tag", back_populates = "Tweet")
+    
     
 
     def __init__(self, content, timestamp, username):
@@ -53,7 +59,7 @@ class Tweet(Base):
         self.username = username
 
     def __repr__(self):
-        print("@" + self.username + "/n " + self.content + "/n" + self.tag)
+         return "@" + self.username + "/n " + self.content + "/n #" + self.tweet_tags + "/n" + self.timestamp
         
 class Tag(Base):
     # TODO: Complete the class
@@ -61,12 +67,13 @@ class Tag(Base):
 
     id = Column("id", INTEGER, primary_key = True)
     content = Column("content", TEXT, nullable = False)
+    tweet_tags = relationship("tweet_tag", back_populates = "tag")
 
     def __init__(self, content):
         self.content = content
 
     def __repr__(self):
-        print("#" + self.content)
+        return "#" + self.content
     
 
 class TweetTag(Base):
