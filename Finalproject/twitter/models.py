@@ -25,7 +25,7 @@ class User(Base):
                              primaryjoin="User.username==Follower.following_id",
                              secondaryjoin="User.username==Follower.follower_id",
                              overlaps="following")
-    def __init__(self, username, password):
+    def __init__(self, username = None, password = None):
         self.username = username
         self.passwor = password
     
@@ -41,6 +41,10 @@ class Follower(Base):
     follower_id = Column('follower_id', TEXT, ForeignKey('users.username'))
     following_id = Column('following_id', TEXT, ForeignKey('users.username'))
 
+    def __init__(self, follower_id, following_id):
+        self.follower_id = follower_id
+        self.following_id = following_id
+
 class Tweet(Base):
     # TODO: Complete the class
     __tablename__ = "Tweets"
@@ -53,7 +57,7 @@ class Tweet(Base):
     
     
 
-    def __init__(self, content, timestamp, username):
+    def __init__(self, content = None, timestamp = None, username = None):
         self.content = content
         self.timestamp = timestamp
         self.username = username
