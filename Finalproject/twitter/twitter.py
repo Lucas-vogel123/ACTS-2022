@@ -104,35 +104,50 @@ class Twitter:
             else:
                 break
         follower = Follower(self.curr_user.id, person.id)
-        db_session().add(follower)
-        db_session().commit()
+        db_session.add(follower)
+        db_session.commit()
         print("You are now following " + who)
         
     def unfollow(self):
         while(True):
             who = input("Who would you like to unfollow?")
-            person = db_session().query(User).where(User.username == who).first()
+            person = db_session.query(User).where(User.username == who).first()
             if(person not in self.curr_user.following):
                 print("you don't follow this person")
             else:
                 break
-        db_session().delete(person)
-        db_session().commit()
+        db_session.delete(person)
+        db_session.commit()
         print("you have unfollowed " + who)
 
 
     def tweet(self):
-        pass
+        tweet = input("Create Tweet: ")
+        tags = input("Enter your tags seperated by spaces:")
+        tag_list = tags.split()
+        timestamp = datetime.now()
+        new_tweet = Tweet(tweet, timestamp, self.curr_user.username)
+        db_session.add(new_tweet)
+        db_session.commit()
     
     def view_my_tweets(self):
-        pass
+        result = db_session().query(Tweet).where(self.curr_user.username == Tweet.username).all()
+        for tweet in result:
+            tweet.__repr__()
+            print("===========================")
     
     """
     Prints the 5 most recent tweets of the 
     people the user follows
     """
     def view_feed(self):
-        pass
+        followers = db_session.query(Follower).where(self.curr_user.following).all()
+        for follower in followers:
+            tweet = db_session.query(Tweet).where(follower.username == Tweet.username).all()
+            newest_tweet = tweet(0)
+            for tweets in tweet:
+                pass
+        
 
     def search_by_user(self):
         pass
