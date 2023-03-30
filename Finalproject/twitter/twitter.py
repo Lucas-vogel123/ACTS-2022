@@ -96,37 +96,31 @@ class Twitter:
             self.end()
 
     def follow(self):
-        while(True):
-            who = input("Who would you like to follow?")
-            person = db_session().query(User).where(User.username == who).first()
-            if(person == None): 
-                print("there is no peron with that username.")
-            if(person in self.curr_user.following):
-                print("you are already following this person")
-            else:
-                break
-        follower = Follower(self.curr_user.username, person.username)
-        self.curr_user.following.append(person)
-        db_session.add(follower)
+        who = input("Who would you like to follow?")
+        person = db_session().query(User).where(User.username == who).first()
+        if(person == None):
+            print("This person doesn't exist")
+            return
+        if(person.username in self.curr_user.following):
+            print("you are already following this person")
+            return
+        self.curr_user.following.add(person)
         db_session.commit()
-        print("You are now following " + who)
+        print("You are now following @" + who)
         
     def unfollow(self):
-        while(True):
-            who = input("Who would you like to unfollow?")
-            person = db_session.query(User).where(User.username == who).first()
-            if(person not in self.curr_user.following):
-                print("you don't follow this person")
-            if(person == None):
-                print("This person doesn't exist")
-            else:
-                break
-        print(person)
+        who = input("Who would you like to unfollow?")
+        person = db_session().query(User).where(User.username == who).first()
+        if(person == None):
+            print("This person doesn't exist")
+            return
+        if(person.username not in self.curr_user.following):
+            print("you don't follow this person")
+            return
         self.curr_user.following.remove(person)
         db_session.commit()
-        print("you have unfollowed " + who)
-
-
+        print("You have unfollowed @" + who)
+       
     def tweet(self):
         tweet = input("Create Tweet: ")
         tags = input("Enter your tags seperated by spaces:")
@@ -149,25 +143,30 @@ class Twitter:
     """
     def view_feed(self):
         # join tweets with followers on follower_id and tweets username where curr_user.username = following_id
-        tweets = db_session.query(Tweet).join(Follower, Tweet.username == Follower.follower_id).where(self.curr_user.username == Follower.following_id).order_by(Tweet.timestamp.desc()).limit(5).all()
-        if(tweets == None):
-            print("You have no feed")
-        else:
-            for tweet in tweets:
-                print(tweet)
+        tweets = db_session.query(Tweet).join(Follower, Tweet.username == Follower.follower_id).where(self.curr_user.username == Follower.following_id).order_by(Tweet.timestamp.desc()).limit(5)
+        for tweet in tweets:
+            print(tweet)
                 
     def search_by_user(self):
         username = input("search for user:")
-        user = db_session.query(User).where(User.username == username)
+        user = db_session.query(User).where(User.username == username).first()
         if(user == None):
             print("There is no user by that name")
-        else:
-            tweets = db_session.query(Tweet).where(user.username == Tweet.username)
-            for tweet in tweets:
-                print(tweet)
+            return
+        tweets = db_session.query(Tweet).where(user.username == Tweet.username)
+        for tweet in tweets:
+            print(tweet)
 
     def search_by_tag(self):
-        pass
+        tag_input = input("search for tag:")
+        tag = db_session.query(Tag).where(tag_input.content == Tag.content).all()
+        if(tag == None):
+            print("There is no tag with that content.")
+            return
+        tweets = db_session.query(Tweet).where(Tweet.tags == )
+        for tweet in tweets:
+            print(tweet)
+        
 
     """
     Allows the user to select from the 
