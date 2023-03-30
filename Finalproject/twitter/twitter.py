@@ -101,10 +101,10 @@ class Twitter:
         if(person == None):
             print("This person doesn't exist")
             return
-        if(person.username in self.curr_user.following):
+        elif(person in self.curr_user.following):
             print("you are already following this person")
             return
-        self.curr_user.following.add(person)
+        self.curr_user.following.append(person)
         db_session.commit()
         print("You are now following @" + who)
         
@@ -114,7 +114,7 @@ class Twitter:
         if(person == None):
             print("This person doesn't exist")
             return
-        if(person.username not in self.curr_user.following):
+        elif(person not in self.curr_user.following):
             print("you don't follow this person")
             return
         self.curr_user.following.remove(person)
@@ -127,6 +127,9 @@ class Twitter:
         tag_list = tags.split()
         timestamp = datetime.now()
         new_tweet = Tweet(tweet, timestamp, self.curr_user.username)
+        for tag in tag_list:
+            new_tag = Tag(tag)
+            new_tweet.tags.append(new_tag)
         db_session.add(new_tweet)
         db_session.commit()
         print(new_tweet)
@@ -143,7 +146,7 @@ class Twitter:
     """
     def view_feed(self):
         # join tweets with followers on follower_id and tweets username where curr_user.username = following_id
-        tweets = db_session.query(Tweet).join(Follower, Tweet.username == Follower.follower_id).where(self.curr_user.username == Follower.following_id).order_by(Tweet.timestamp.desc()).limit(5)
+        tweets = db_session.query(Tweet).join(Follower, Tweet.username == Follower.following_id).where(self.curr_user.username == Follower.follower_id).order_by(Tweet.timestamp.desc()).limit(5)
         for tweet in tweets:
             print(tweet)
                 
@@ -163,9 +166,9 @@ class Twitter:
         if(tag == None):
             print("There is no tag with that content.")
             return
-        tweets = db_session.query(Tweet).where(Tweet.tags == )
-        for tweet in tweets:
-            print(tweet)
+        #tweets = db_session.query(Tweet).where(Tweet.tags == )
+        #for tweet in tweets:
+            #print(tweet)
         
 
     """
