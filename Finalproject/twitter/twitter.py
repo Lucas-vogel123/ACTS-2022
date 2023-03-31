@@ -122,7 +122,7 @@ class Twitter:
         print("You have unfollowed @" + who)
        
     def tweet(self):
-        tweet = input("Create Tweet: ")
+        tweet = input("Create Tweet:")
         tags = input("Enter your tags seperated by spaces:")
         tag_list = tags.split()
         timestamp = datetime.now()
@@ -162,13 +162,13 @@ class Twitter:
 
     def search_by_tag(self):
         tag_input = input("search for tag:")
-        tag = db_session.query(Tag).where(tag_input.content == Tag.content).all()
-        if(tag == None):
-            print("There is no tag with that content.")
+        tags = db_session.query(Tag).where(tag_input == ("#" + Tag.content)).all()
+        if(tags == None):
+            print("There is no content with that tag.")
             return
-        #tweets = db_session.query(Tweet).where(Tweet.tags == )
-        #for tweet in tweets:
-            #print(tweet)
+        for tag in tags:
+            tweet = db_session.query(Tweet).where(tag in Tweet.tags).first()
+            print(tweet)
         
 
     """

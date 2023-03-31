@@ -67,7 +67,7 @@ class Tweet(Base):
         tag_str = ""
         for tag in self.tags:
             tag_str = tag_str + " " + tag.content
-        return "@" + self.username + "\n " + self.content  + "\n" + tag_str + "\n" + self.timestamp 
+        return "@" + self.username + "\n" + self.content  + "\n" + tag_str + "\n" + self.timestamp 
         
 class Tag(Base):
     # TODO: Complete the class
