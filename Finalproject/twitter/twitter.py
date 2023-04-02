@@ -46,11 +46,11 @@ class Twitter:
             user = input("What will your twitter handle be?")
             password = input("Enter a password:")
             verify = input("Re-enter your password:")
-            check_new = db_session.query(User).where(User.username == user).all()
-            if(verify == password):
+            check_new = db_session.query(User).where(User.username == user).first()
+            if(verify == password and check_new == None):
                 break
             else:
-                print("Those password don't match try again")
+                print("That username is taken or your passwords don't match")
         new_user = User(user, password)
         self.logged_in = True
         self.curr_user = new_user
@@ -162,13 +162,13 @@ class Twitter:
 
     def search_by_tag(self):
         tag_input = input("search for tag:")
-        tags = db_session.query(Tag).where(tag_input == ("#" + Tag.content)).all()
+        tags = db_session.query(Tag).where(("#" + tag_input) == Tag.content).all()
         if(tags == None):
             print("There is no content with that tag.")
             return
         for tag in tags:
-            tweet = db_session.query(Tweet).where(tag in Tweet.tags).first()
-            print(tweet)
+            tweet = tag.tweets
+            print(tweet) 
         
 
     """
